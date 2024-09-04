@@ -95,7 +95,7 @@ class _SongbookPageState extends State<SongbookPage>
                   actions: [
                     // Add actions here
                     IconButton(
-                      icon: Icon(Icons.emoji_events), // Trophy icon
+                      icon: Icon(Icons.emoji_events, color: Colors.grey[900]), // Trophy icon
                       onPressed: () {
                         Navigator.push(
                           context,

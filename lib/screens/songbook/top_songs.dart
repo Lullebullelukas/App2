@@ -18,7 +18,7 @@ class _TopSongsPageState extends State<TopSongsPage> with TickerProviderStateMix
 
   //bad helpvariables that are most likely unneeded
   bool searchFocus = false;
-  int initChar = 1;
+  late int initChar;
 
   TextEditingController _controller = TextEditingController();
 
@@ -47,6 +47,7 @@ class _TopSongsPageState extends State<TopSongsPage> with TickerProviderStateMix
 
   Widget build(BuildContext context) {
     var t = AppLocalizations.of(context)!;
+    initChar = 1;
     return TopSongs == []
         ? Scaffold(
             //change text

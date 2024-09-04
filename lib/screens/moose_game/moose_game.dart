@@ -277,7 +277,7 @@ class _MooseGamePageState extends State<MooseGamePage> with SingleTickerProvider
         actions: [
                     // Add actions here
                     IconButton(
-                      icon: Icon(Icons.emoji_events), // Trophy icon
+                      icon: Icon(Icons.emoji_events, color: Color.fromARGB(255, 40, 40, 40)), // Trophy icon
                       onPressed: () {
                         gameOver();
                         Future.delayed(Duration(milliseconds: 500));
