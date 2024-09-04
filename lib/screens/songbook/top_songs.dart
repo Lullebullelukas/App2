@@ -35,8 +35,6 @@ class _TopSongsPageState extends State<TopSongsPage> with TickerProviderStateMix
           TopSongs = List.from(songs);
         }));
 
-    setRotation(360);
-
     super.initState();
   }
 
@@ -46,11 +44,6 @@ class _TopSongsPageState extends State<TopSongsPage> with TickerProviderStateMix
     super.dispose();
   }
 
-  void setRotation(int degrees) {
-    final angle = degrees * 3.1415 / 180;
-
-    animation = Tween<double>(begin: 0, end: angle).animate(animationController);
-  }
 
   Widget build(BuildContext context) {
     var t = AppLocalizations.of(context)!;
@@ -61,9 +54,7 @@ class _TopSongsPageState extends State<TopSongsPage> with TickerProviderStateMix
             body: Center(child: CircularProgressIndicator(color: (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[600]))))
         : GestureDetector(
             onTap: () => FocusScope.of(context).unfocus(),
-            child: AnimatedBuilder(
-                animation: animation,
-                child: Scaffold(
+            child: Scaffold(
                   appBar: AppBar(
                     title: Text(t.songbookSongbook),
                   ),
@@ -83,8 +74,7 @@ class _TopSongsPageState extends State<TopSongsPage> with TickerProviderStateMix
                     ],
                   ),
                 ),
-                //Part of doing a barrel roll
-                builder: (context, child) => Transform.rotate(angle: animation.value, child: child)));
+              );
   }
 
   Widget _generateSongTile(SongbookEntry song) {
