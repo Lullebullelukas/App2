@@ -38,7 +38,7 @@ const startGameSpeed = 4;
 const maxGameSpeed = 11;
 const secondsToReachMaxApprox = 60;
 
-class _MooseGamePageState extends State<MooseGamePage> with SingleTickerProviderStateMixin {
+class _MooseGamePageState extends State<MooseGamePage> with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   final String idleLink = "assets/img/moose_game/hilbert_scaled_idle.png";
   final String duckingLink = "assets/img/moose_game/hilbert_scaled_ducking.png";
   final Color googleDinosaurColor = Color.fromRGBO(83, 83, 83, 1.0);
@@ -61,10 +61,22 @@ class _MooseGamePageState extends State<MooseGamePage> with SingleTickerProvider
 
   bool isDead = false;
 
+  // This keeps track of if the app is in the foreground or background
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) {
+      setState(() {
+        gameOver();
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
 
+    WidgetsBinding.instance.addObserver(this);
+    
     cameraPos = Vector2.zero();
     late int tempuserid; 
     locator<UserService>().getUser().then((user) => tempuserid = user.id ?? 0);
@@ -86,6 +98,8 @@ class _MooseGamePageState extends State<MooseGamePage> with SingleTickerProvider
   void dispose() {
     gameAnimController.stop();
     gameAnimController.dispose();
+
+    WidgetsBinding.instance.removeObserver(this);
 
     super.dispose();
   }
