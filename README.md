@@ -11,4 +11,5 @@ This project uses Flutter 3.19.6.
 1. Clone the repo: `git clone https://github.com/fsek/App2.git`
 1. Run `flutter pub get` inside project root.
 1. `flutter build apk` (if this doesn't work skip/try without this step, it is probably and often not needed)
-1. Run `flutter pub run build_runner build`
+1. Run `flutter pub run build_runner build`.
+1. To start the app on your emulator, run `flutter run`.
