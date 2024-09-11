@@ -54,7 +54,11 @@ class _HighscorePageState extends State<HighscorePage>
 
         // If cancelled then go back
         if (enteredName == null) return;
-        if(enteredName.isEmpty) continue;
+        if (enteredName.isEmpty) continue;
+
+        // I hate this btw
+        // This is a empty char added for version control
+        enteredName = enteredName + "\u{200E}";
 
         user!.game_nickname = enteredName;
         

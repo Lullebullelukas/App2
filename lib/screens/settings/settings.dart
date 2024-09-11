@@ -90,11 +90,13 @@ class _SettingsPageState extends State<SettingsPage> {
                   user!.firstname,
                   (input) => user!.firstname = input,
                 ),
-                _makeTextField( "Game nickname", user!.game_nickname,
+                _makeTextField( "Game nickname", user!.game_nickname?.replaceAll("\u{200E}", ""),
                   // TODO use translate var
                   (input) {
                     changedSetting = true;
-                    user!.game_nickname = input;
+                    if (input == null) user!.game_nickname = input;
+                    // remove version control char if it exists, then add it back at the end
+                    else user!.game_nickname = input.replaceAll("\u{200E}", "") + "\u{200E}";
                   },
                 ),
                 _makeDropDown<String>(
