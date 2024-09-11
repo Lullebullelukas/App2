@@ -14,7 +14,6 @@ class Ground extends GameObject {
 
   Ground(double xPosition, double floorY) : super(Vector2(xPosition, floorY)) {
     sprite = groundSprite;
-    print(sprite.imagePath);
   }
 
   @override

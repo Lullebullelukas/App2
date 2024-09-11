@@ -18,7 +18,6 @@ class Obstacle extends GameObject {
 
   Obstacle(double xPosition, double floorY) : super(Vector2(xPosition, floorY)) {
     sprite = possibleSprites[Random().nextInt(possibleSprites.length)];
-    print(sprite.imagePath);
   }
 
   @override

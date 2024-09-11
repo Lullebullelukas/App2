@@ -47,9 +47,9 @@ class _HighscorePageState extends State<HighscorePage>
         
       String? enteredName = "";
       
-      while(enteredName.isEmpty) {
+      while(enteredName!.isEmpty) {
 
-        String? enteredName = await inputDialog(context,
+        enteredName = await inputDialog(context,
             "Enter a nickname (can be changed in settings)", "Name", true);
 
         // If cancelled then go back
