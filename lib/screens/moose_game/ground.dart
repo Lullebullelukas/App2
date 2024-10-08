@@ -1,8 +1,5 @@
-import 'dart:math';
 import 'package:vector_math/vector_math.dart';
 
-import 'package:flutter/src/widgets/framework.dart';
-import 'dart:ui';
 
 import 'package:fsek_mobile/screens/moose_game/game_object.dart';
 
