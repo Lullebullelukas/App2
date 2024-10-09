@@ -16,7 +16,8 @@ abstract class GameObject {
       width: pixelSize.width,
       height: pixelSize.height,
       filterQuality: FilterQuality.none,
-      );
+    );
   }
+
   void update(double deltaTime);
 }

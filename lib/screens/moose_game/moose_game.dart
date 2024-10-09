@@ -1,5 +1,5 @@
-import 'dart:async';
 import 'dart:math';
+import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:fsek_mobile/screens/moose_game/game_object.dart';
@@ -11,7 +11,7 @@ import 'package:fsek_mobile/services/service_locator.dart';
 import 'package:fsek_mobile/services/game.service.dart';
 import 'package:fsek_mobile/services/user.service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-//import 'package:audioplayers/audioplayers.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'package:vector_math/vector_math.dart';
@@ -28,8 +28,8 @@ const double scorePerSecond = 50;
 const int obstacleCount = 3;
 const double minObstacleDistance = 4;
 const double maxObstacleDistance = 14;
-const double minSandwichDistance = 10;
-const double maxSandwichDistance = 20;
+const double minSandwichDistance = 14;
+const double maxSandwichDistance = 30;
 
 const startGameSpeed = 4;
 const maxGameSpeed = 11;
@@ -40,11 +40,14 @@ class _MooseGamePageState extends State<MooseGamePage>
   final String idleLink = "assets/img/moose_game/hilbert_scaled_idle.png";
   final String duckingLink = "assets/img/moose_game/hilbert_scaled_ducking.png";
   final Color googleDinosaurColor = Color.fromRGBO(83, 83, 83, 1.0);
+  final AudioPlayer soundtrackPlayer = AudioPlayer();
   late Vector2 cameraPos;
   final double gameViewportWidth = 10; // How many mooses should fit-
   late double worldScale;
   double score = 0.0;
   double highscore = 0.0;
+  double lastSandwichBonus = 0.0;
+  int sandwichBonusPopupFadeout = 0;
   double gameSpeed = 0;
   bool newHighscore = false;
 
@@ -103,6 +106,8 @@ class _MooseGamePageState extends State<MooseGamePage>
   void dispose() {
     gameAnimController.stop();
     gameAnimController.dispose();
+    soundtrackPlayer.stop();
+    soundtrackPlayer.dispose();
 
     WidgetsBinding.instance.removeObserver(this);
 
@@ -119,11 +124,14 @@ class _MooseGamePageState extends State<MooseGamePage>
       obstacles.add(Obstacle(previousPos, floorY));
     }
     leftmostObstacleIdx = 0;
-    sandwich = Sandwich(gameViewportWidth, 1.0);
+    sandwich = Sandwich(0.0, 1.0);
     updateSandwich();
 
     ground1 = Ground(-Ground.groundWidth / 2, floorY - 1 / 2);
     ground2 = Ground(Ground.groundWidth / 2, floorY - 1 / 2);
+    soundtrackPlayer.setSource(AssetSource('audio/moosegame.ogg'));
+    soundtrackPlayer.setReleaseMode(ReleaseMode.loop);
+    soundtrackPlayer.resume();
   }
 
   void update() {
@@ -158,9 +166,9 @@ class _MooseGamePageState extends State<MooseGamePage>
     }
 
     Rect mooseRect = getGameObjectCameraRect(screenSize, moose).deflate(10);
-    for (GameObject obst in obstacles) {
-      obst.position.x -= gameSpeed * deltaTime;
-      Rect obstRect = getGameObjectCameraRect(screenSize, obst).deflate(10);
+    for (Obstacle obst in obstacles) {
+      obst.position.x -= (gameSpeed + obst.speed) * deltaTime;
+      Rect obstRect = getGameObjectCameraRect(screenSize, obst).deflate(11);
       if (mooseRect.overlaps(obstRect)) {
         gameOver();
         return;
@@ -168,17 +176,22 @@ class _MooseGamePageState extends State<MooseGamePage>
 
       if (obst.position.x < -gameViewportWidth) {
         setState(() {
-          obst.position.x =
+          //print(obstacles[(leftmostObstacleIdx - 1) % obstacleCount].position.x);
+          obst.position.x = max(
+              gameViewportWidth,
               obstacles[(leftmostObstacleIdx - 1) % obstacleCount].position.x +
                   Random().nextDouble() *
                       (maxObstacleDistance - minObstacleDistance) +
-                  minObstacleDistance;
+                  minObstacleDistance);
+
+          obst.randomize();
           leftmostObstacleIdx = (leftmostObstacleIdx + 1) % obstacleCount;
         });
       }
     }
 
     // Sandwich moves a bit slower (because why not)
+    sandwichBonusPopupFadeout = max(0, sandwichBonusPopupFadeout - 1);
     sandwich.position.x -= gameSpeed * deltaTime * 0.3;
     sandwich.position.y =
         1.0 + 1.0 * (sin(1.2 * sandwich.position.x + sandwichOffset) + 1.0);
@@ -186,7 +199,9 @@ class _MooseGamePageState extends State<MooseGamePage>
         getGameObjectCameraRect(screenSize, sandwich).deflate(10);
     if (mooseRect.overlaps(sandwichRect)) {
       setState(() {
-        score += 200;
+        lastSandwichBonus = score * 0.1;
+        score *= 1.1;
+        sandwichBonusPopupFadeout = 127;
         updateSandwich();
       });
     }
@@ -211,7 +226,9 @@ class _MooseGamePageState extends State<MooseGamePage>
 
   void gameOver() {
     gameAnimController.stop();
+    soundtrackPlayer.stop();
     setState(() {
+      sandwichBonusPopupFadeout = 0;
       if (score > highscore) {
         highscore = score;
         newHighscore = true;
@@ -272,6 +289,7 @@ class _MooseGamePageState extends State<MooseGamePage>
 
     Size screenSize = MediaQuery.of(context).size;
     worldScale = screenSize.width / (gameViewportWidth * 24);
+    print(worldScale);
 
     List<Widget> children = [getGameObjectWidget(moose, screenSize)];
 
@@ -283,6 +301,19 @@ class _MooseGamePageState extends State<MooseGamePage>
             child: Text(
               score.toInt().toString(),
               style: const TextStyle(fontFamily: "NF-Pixels", fontSize: 60),
+            ))));
+
+    // Sandwhich bonus popup
+    children.add(Positioned.fill(
+        top: -270,
+        child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              "+" + lastSandwichBonus.toInt().toString(),
+              style: new TextStyle(
+                  fontFamily: "NF-Pixels",
+                  fontSize: 50,
+                  color: Color.fromARGB(sandwichBonusPopupFadeout, 0, 0, 0)),
             ))));
 
     // Highscore counter

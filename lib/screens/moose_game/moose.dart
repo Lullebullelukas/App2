@@ -25,7 +25,7 @@ class Moose extends GameObject {
   double yVelocity = 0;
   final double jumpForce = 20;
   final double gravity = 38;
-  final double lowGrav = 10;
+  final double lowGrav = 5;
   double yGrav = 0;
   double coyoteJump = 0;
   MooseState state = MooseState.running;
