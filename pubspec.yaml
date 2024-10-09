@@ -77,6 +77,8 @@ dependencies:
   photo_view: ^0.15.0
   package_info_plus: ^8.0.1
   connectivity_plus: ^3.0.3
+  flutter_gen: any
+  vector_math: any
 dev_dependencies:
   json_serializable: ^6.7.1 # For Data serialization
   build_runner: ^2.0.5 # For building the JSON data object
