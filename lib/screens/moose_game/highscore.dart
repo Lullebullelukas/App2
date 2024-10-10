@@ -44,11 +44,10 @@ class _HighscorePageState extends State<HighscorePage>
       //Set users nickname if first time playing game
       // TODO add translate var
       if (user!.game_nickname != null) return;
-        
-      String? enteredName = "";
-      
-      while(enteredName!.isEmpty) {
 
+      String? enteredName = "";
+
+      while (enteredName!.isEmpty) {
         enteredName = await inputDialog(context,
             "Enter a nickname (can be changed in settings)", "Name", true);
 
@@ -61,10 +60,11 @@ class _HighscorePageState extends State<HighscorePage>
         enteredName = enteredName + "\u{200E}";
 
         user!.game_nickname = enteredName;
-        
-        try {//Try setting nickname in backend. Fails if it was not unique
+
+        try {
+          //Try setting nickname in backend. Fails if it was not unique
           await locator<UserService>().updateUser(user!);
-        } catch(err) {
+        } catch (err) {
           continue;
         }
       }
@@ -72,9 +72,8 @@ class _HighscorePageState extends State<HighscorePage>
       // If no name is entered then use the users real name
       //Vi får collisions här ändå
       // user!.game_nickname = nickname == "" ? user!.firstname : nickname;
-    
 
-      //Här också tar bort för att det är ett objekt som användaren inte har förrän spel klart 
+      //Här också tar bort för att det är ett objekt som användaren inte har förrän spel klart
       // setState(() {
       //   user!.game_score = 0;
       // });
@@ -169,8 +168,8 @@ class _HighscorePageState extends State<HighscorePage>
                                           "${results[index].user!.game_nickname}")
                                       : Text(
                                           "${results[index].user!.firstname}"),
-                                  trailing: Text(
-                                      "${results[index].score ?? 0}"),
+                                  trailing:
+                                      Text("${results[index].score ?? 0}"),
                                 ));
                           },
                         ) // change for translate variable later
@@ -183,13 +182,17 @@ class _HighscorePageState extends State<HighscorePage>
   Image _findMedal(int index) {
     switch (index) {
       case 0:
-        return Image(image: AssetImage("assets/img/moose_game/gold_medal.png"), width: 36);
+        return Image(
+            image: AssetImage("assets/img/moose_game/gold_medal.png"),
+            width: 36);
       case 1:
         return Image(
-            image: AssetImage("assets/img/moose_game/silver_medal.png"), width: 30);
+            image: AssetImage("assets/img/moose_game/silver_medal.png"),
+            width: 30);
       case 2:
         return Image(
-            image: AssetImage("assets/img/moose_game/bronze_medal.png"), width: 25);
+            image: AssetImage("assets/img/moose_game/bronze_medal.png"),
+            width: 25);
       default:
         throw new Exception("Bad index for medal image");
     }
