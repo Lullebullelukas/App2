@@ -289,14 +289,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
-  color:
-    dependency: transitive
-    description:
-      name: color
-      sha256: ddcdf1b3badd7008233f5acffaf20ca9f5dc2cd0172b75f68f24526a5f5725cb
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.0"
   connectivity_plus:
     dependency: "direct main"
     description:
@@ -353,14 +345,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.6"
-  dartx:
-    dependency: transitive
-    description:
-      name: dartx
-      sha256: "8b25435617027257d43e6508b5fe061012880ddfdaa75a71d607c3de2a13d244"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.0"
   dbus:
     dependency: transitive
     description:
@@ -486,22 +470,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.2"
-  flutter_gen:
-    dependency: "direct main"
-    description:
-      name: flutter_gen
-      sha256: d7e4e57f606d73628b97765a67fdfb5a97e24cd2183e170afa8d1f62e48a9d5c
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.8.0"
-  flutter_gen_core:
-    dependency: transitive
-    description:
-      name: flutter_gen_core
-      sha256: "46ecf0e317413dd065547887c43f93f55e9653e83eb98dc13dd07d40dd225325"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.8.0"
   flutter_html:
     dependency: "direct main"
     description:
@@ -717,14 +685,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  hashcodes:
-    dependency: transitive
-    description:
-      name: hashcodes
-      sha256: "80f9410a5b3c8e110c4b7604546034749259f5d6dcca63e0d3c17c9258f1a651"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   html:
     dependency: "direct main"
     description:
@@ -773,14 +733,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
-  image_size_getter:
-    dependency: transitive
-    description:
-      name: image_size_getter
-      sha256: "0511799498340b70993d2dfb34b55a2247b5b801d75a6cdd4543acfcafdb12b0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.0"
   infinite_scroll_pagination:
     dependency: "direct main"
     description:
@@ -1370,14 +1322,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.1"
-  time:
-    dependency: transitive
-    description:
-      name: time
-      sha256: ad8e018a6c9db36cb917a031853a1aae49467a93e0d464683e029537d848c221
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.4"
   timezone:
     dependency: transitive
     description:
