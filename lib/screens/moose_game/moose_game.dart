@@ -129,7 +129,7 @@ class _MooseGamePageState extends State<MooseGamePage>
 
     ground1 = Ground(-Ground.groundWidth / 2, floorY - 1 / 2);
     ground2 = Ground(Ground.groundWidth / 2, floorY - 1 / 2);
-    soundtrackPlayer.setSource(AssetSource('audio/moosegame.ogg'));
+    soundtrackPlayer.setSource(AssetSource('audio/moosegame.mp3'));
     soundtrackPlayer.setReleaseMode(ReleaseMode.loop);
     soundtrackPlayer.resume();
   }
@@ -199,8 +199,8 @@ class _MooseGamePageState extends State<MooseGamePage>
         getGameObjectCameraRect(screenSize, sandwich).deflate(10);
     if (mooseRect.overlaps(sandwichRect)) {
       setState(() {
-        lastSandwichBonus = score * 0.1;
-        score *= 1.1;
+        lastSandwichBonus = score * 0.05;
+        score *= 1.05;
         sandwichBonusPopupFadeout = 127;
         updateSandwich();
       });
@@ -227,6 +227,8 @@ class _MooseGamePageState extends State<MooseGamePage>
   void gameOver() {
     gameAnimController.stop();
     soundtrackPlayer.stop();
+    soundtrackPlayer.setReleaseMode(ReleaseMode.stop);
+    soundtrackPlayer.play(AssetSource('audio/gameoverfart.mp3'));
     setState(() {
       sandwichBonusPopupFadeout = 0;
       if (score > highscore) {
@@ -289,7 +291,7 @@ class _MooseGamePageState extends State<MooseGamePage>
 
     Size screenSize = MediaQuery.of(context).size;
     worldScale = screenSize.width / (gameViewportWidth * 24);
-    print(worldScale);
+    //print(worldScale);
 
     List<Widget> children = [getGameObjectWidget(moose, screenSize)];
 

@@ -105,7 +105,8 @@ flutter:
     - lib/l10n/
     - assets/
     - assets/audio/
-    - assets/audio/moosegame.ogg
+    - assets/audio/moosegame.mp3
+    - assets/audio/gameoverfart.mp3
     - assets/img/
     - assets/img/moose_game/
     - assets/img/memes/
