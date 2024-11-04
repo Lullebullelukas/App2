@@ -12,28 +12,16 @@ List<ObstacleDef> obstacles = [
   ObstacleDef(Sprite("assets/img/moose_game/v_nails.png", 24, 24), 1.0),
   ObstacleDef(Sprite("assets/img/moose_game/f_rubik_2.png", 24, 24), 1.0),
   ObstacleDef(
-    Sprite("assets/img/moose_game/bike_l.png", 24, 24),
-    0.4,
-    1.0,
-    2.0,
+    Sprite("assets/img/moose_game/bike_l.png", 24, 24), 0.4, 1.0, 2.0,
   ),
   ObstacleDef(
-    Sprite("assets/img/moose_game/bike_r.png", 24, 24),
-    0.2,
-    -1.0,
-    -2.0,
+    Sprite("assets/img/moose_game/bike_r.png", 24, 24), 0.2, -1.0, -2.0,
   ),
   ObstacleDef(
-    Sprite("assets/img/moose_game/scooter_l.png", 24, 24),
-    0.4,
-    1.0,
-    2.0,
+    Sprite("assets/img/moose_game/scooter_l.png", 24, 24), 0.4, 1.0, 2.0,
   ),
   ObstacleDef(
-    Sprite("assets/img/moose_game/scooter_r.png", 24, 24),
-    0.2,
-    -1.0,
-    -2.0,
+    Sprite("assets/img/moose_game/scooter_r.png", 24, 24), 0.2, -1.0, -2.0,
   ),
 ];
 

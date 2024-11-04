@@ -84,16 +84,10 @@ class _MooseGamePageState extends State<MooseGamePage>
     late int tempuserid;
     locator<UserService>().getUser().then((user) => tempuserid = user.id ?? 0);
     locator<GameScoreService>().getScores().then((users) => {
-          highscore = (users
-                      .firstWhere(
-                          (gamescore) => gamescore.user?.id == tempuserid)
-                      .score ??
-                  0)
-              .toDouble()
+          highscore = (users.firstWhere((gamescore) => gamescore.user?.id == tempuserid).score ?? 0).toDouble()
         });
 
-    gameAnimController =
-        AnimationController(vsync: this, duration: Duration(days: 6122));
+    gameAnimController = AnimationController(vsync: this, duration: Duration(days: 6122));
     gameAnimController.addListener(update);
 
     initializeGame();
@@ -118,9 +112,7 @@ class _MooseGamePageState extends State<MooseGamePage>
     obstacles.add(Obstacle(gameViewportWidth, floorY));
     double previousPos = gameViewportWidth;
     for (int i = 1; i < obstacleCount; i++) {
-      previousPos +=
-          Random().nextDouble() * (maxObstacleDistance - minObstacleDistance) +
-              minObstacleDistance;
+      previousPos += Random().nextDouble() * (maxObstacleDistance - minObstacleDistance) + minObstacleDistance;
       obstacles.add(Obstacle(previousPos, floorY));
     }
     leftmostObstacleIdx = 0;
@@ -136,17 +128,11 @@ class _MooseGamePageState extends State<MooseGamePage>
 
   void update() {
     // Clamp since restart results in negative elapsed time.
-    double deltaTime = max(
-        0,
-        (gameAnimController.lastElapsedDuration! - lastUpdateTime)
-                .inMilliseconds /
-            1000.0);
+    double deltaTime = max(0, (gameAnimController.lastElapsedDuration! - lastUpdateTime).inMilliseconds / 1000.0);
     Size screenSize = MediaQuery.of(context).size;
     double totalElapsedTime = score / scorePerSecond;
-    gameSpeed = 1 /
-            (1 + exp(-totalElapsedTime * 4 / secondsToReachMaxApprox)) *
-            (maxGameSpeed + startGameSpeed) -
-        startGameSpeed;
+    gameSpeed = 1 / (1 + exp(-totalElapsedTime * 4 / secondsToReachMaxApprox)) * (maxGameSpeed + startGameSpeed) - startGameSpeed;
+
     moose.gameSpeed = gameSpeed;
     moose.update(deltaTime);
 
@@ -177,12 +163,7 @@ class _MooseGamePageState extends State<MooseGamePage>
       if (obst.position.x < -gameViewportWidth) {
         setState(() {
           //print(obstacles[(leftmostObstacleIdx - 1) % obstacleCount].position.x);
-          obst.position.x = max(
-              gameViewportWidth,
-              obstacles[(leftmostObstacleIdx - 1) % obstacleCount].position.x +
-                  Random().nextDouble() *
-                      (maxObstacleDistance - minObstacleDistance) +
-                  minObstacleDistance);
+          obst.position.x = max(gameViewportWidth, obstacles[(leftmostObstacleIdx - 1) % obstacleCount].position.x + Random().nextDouble() * (maxObstacleDistance - minObstacleDistance) + minObstacleDistance);
 
           obst.randomize();
           leftmostObstacleIdx = (leftmostObstacleIdx + 1) % obstacleCount;
@@ -243,10 +224,8 @@ class _MooseGamePageState extends State<MooseGamePage>
   Rect getGameObjectCameraRect(Size screenSize, GameObject gameObject) {
     return Rect.fromCenter(
       center: Offset(
-          screenSize.width / 2 +
-              (gameObject.position.x - cameraPos.x) * worldScale * 24,
-          screenSize.height / 2 -
-              (gameObject.position.y + cameraPos.y) * worldScale * 24),
+          screenSize.width / 2 + (gameObject.position.x - cameraPos.x) * worldScale * 24,
+          screenSize.height / 2 - (gameObject.position.y + cameraPos.y) * worldScale * 24),
       width: gameObject.sprite.imageWidth * worldScale,
       height: gameObject.sprite.imageHeight * worldScale,
     );
