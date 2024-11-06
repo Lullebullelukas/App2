@@ -41,7 +41,7 @@ class _HighscorePageState extends State<HighscorePage>
         }));
     locator<UserService>().getUser().then((value) async {
       user = value;
-      //Set users nickname if first time playing game
+      // Set users nickname if first time playing game
       // TODO add translate var
       if (user!.game_nickname != null) return;
 
@@ -56,8 +56,8 @@ class _HighscorePageState extends State<HighscorePage>
         if (enteredName.isEmpty) continue;
 
         // I hate this btw
-        // This is a empty char added for version control
-        enteredName = enteredName + "\u{200E}";
+        // This is a empty char added for version control, but first the name is cleaned up
+        enteredName = enteredName.replaceAll("\u{200E}", "") + "\u{200E}";
 
         user!.game_nickname = enteredName;
 

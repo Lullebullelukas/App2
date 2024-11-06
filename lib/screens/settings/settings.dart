@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fsek_mobile/models/user/user.dart';
 import 'package:fsek_mobile/services/service_locator.dart';
 import 'package:fsek_mobile/services/user.service.dart';
+import 'package:fsek_mobile/services/game.service.dart';
 import 'package:intl/intl.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -93,6 +94,17 @@ class _SettingsPageState extends State<SettingsPage> {
                 _makeTextField( "Game nickname", user!.game_nickname?.replaceAll("\u{200E}", ""),
                   // TODO use translate var
                   (input) {
+
+                    // Version control check
+                    if (user!.game_nickname != null) {
+                      if (!user!.game_nickname!.contains("\u{200E}"))
+                      {
+                        // The user has not updated their nickname since the version control was added
+                        // this means they might have a cheated in score
+                        locator<GameScoreService>().resetScore();
+                      }
+                    }
+                    
                     changedSetting = true;
                     if (input == null) user!.game_nickname = input;
                     // remove version control char if it exists, then add it back at the end
