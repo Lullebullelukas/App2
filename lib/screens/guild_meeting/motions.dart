@@ -54,7 +54,7 @@ class _MotionsPageState extends State<MotionsPage> with TickerProviderStateMixin
         ? Scaffold(
             appBar: AppBar(title: Text(t.motionsPageTitle)),
             body: Center(
-                child: CircularProgressIndicator(color: (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[600]))))
+                child: CircularProgressIndicator(color: Theme.of(context).colorScheme.primary)))
         : GestureDetector(
             onTap: () => FocusScope.of(context).unfocus(),
             child: Scaffold(
@@ -77,18 +77,18 @@ class _MotionsPageState extends State<MotionsPage> with TickerProviderStateMixin
                               ? IconButton(
                                   icon: Icon(
                                     Icons.arrow_back,
-                                    color: Colors.grey[800],
+                                    color: Theme.of(context).colorScheme.onSurface,
                                   ),
                                   onPressed: () => FocusScope.of(context).unfocus())
                               : Icon(
                                   Icons.search,
-                                  color: Colors.grey[800],
+                                  color: Theme.of(context).colorScheme.onSurface,
                                 ),
                           hintText: t.songbookSearch,
                           suffixIcon: _controller.text.length > 0
                               ? IconButton(
                                   icon: Icon(Icons.clear),
-                                  color: Colors.grey[800],
+                                  color: Theme.of(context).colorScheme.onSurface,
                                   onPressed: () => setState(() {
                                         _controller.clear();
                                         FocusScope.of(context).unfocus();

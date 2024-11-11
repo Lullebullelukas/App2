@@ -27,8 +27,8 @@ class _LoadingWidgetState extends State<LoadingWidget> {
             children: [
           CircleAvatar(
             radius: 36.0,
-            backgroundImage: (isAprilFools
-                ? AssetImage("assets/img/d_logo.png")
+            backgroundImage: (Theme.of(context).brightness == Brightness.dark
+                ? AssetImage("assets/img/f_logo_white.png")
                 : AssetImage("assets/img/f_logo.png")),
             backgroundColor: Colors.transparent,
           ),
@@ -40,12 +40,12 @@ class _LoadingWidgetState extends State<LoadingWidget> {
             children: [
               Text(
                 "Loading...",
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(context).textTheme.displayMedium,
               ),
               SizedBox(
                 width: 16,
               ),
-              CircularProgressIndicator()
+              CircularProgressIndicator(color: Theme.of(context).primaryColor)
             ],
           )
         ]));

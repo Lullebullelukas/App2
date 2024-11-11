@@ -52,9 +52,7 @@ class _SettingsPageState extends State<SettingsPage> {
           appBar: AppBar(title: Text(t.otherAccount)),
           body: Center(
               child: CircularProgressIndicator(
-                  color: (isAprilFools
-                      ? Color(0xFFF17F9F)
-                      : Colors.orange[600]))));
+                  color: Theme.of(context).colorScheme.primary)));
     }
     return WillPopScope(
       onWillPop: () async {
@@ -140,8 +138,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   (bool? change) => user!.display_phone = change,
                 ),
                 DropdownButton(
+                  iconEnabledColor: Theme.of(context).colorScheme.onBackground,
+                  iconDisabledColor: Theme.of(context).colorScheme.onBackground, 
                   isExpanded: true,
-                  hint: Text(t.settingsFoodPrefs),
+                  hint: Text(t.settingsFoodPrefs, style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.onBackground)),
                   onChanged: (_) {},
                   items: {
                     "vegetarian": t.vegetarian,
@@ -176,7 +176,9 @@ class _SettingsPageState extends State<SettingsPage> {
                       (input) => user!.food_custom = input),
                 Text(
                   t.settingsFoodPrefsPrivacy,
-                  style: TextStyle(color: Colors.grey[600]),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.onBackground.withAlpha(200),
+                  ),
                 )
               ]),
               _makeGrayTextbox(t.notifications),
@@ -198,7 +200,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     user!.notify_event_open,
                     (bool? change) => user!.notify_event_open = change)
               ]),
-              _makeGrayTextbox(t.settingsMemberSince + _makeTimestamp())
+              _makeGrayTextbox(t.settingsMemberSince + " " + _makeTimestamp())
             ],
           ),
         ),
@@ -266,9 +268,6 @@ class _SettingsPageState extends State<SettingsPage> {
       StatefulBuilder(
           builder: (BuildContext context, StateSetter setChildState) {
         return Checkbox(
-          checkColor: Colors.white,
-          fillColor: MaterialStateProperty.resolveWith((states) =>
-              (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[600])),
           value: value,
           onChanged: (bool? change) {
             setChildState(() {
@@ -287,7 +286,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return SizedBox(
       width: double.infinity,
       child: Container(
-        color: Colors.grey[200],
+        color: Theme.of(context).colorScheme.surfaceVariant,
         padding: EdgeInsets.fromLTRB(12, 28, 12, 28),
         child: Text(displayText),
       ),
@@ -320,8 +319,7 @@ class _SettingsPageState extends State<SettingsPage> {
             Column(
               children: [
                 CircularProgressIndicator(
-                  color:
-                      (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[600]),
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               ],
             ),
@@ -344,7 +342,7 @@ class _SettingsPageState extends State<SettingsPage> {
             Align(
               alignment: Alignment.bottomRight,
               child: IconButton(
-                icon: Icon(Icons.check, color: Colors.grey[800]),
+                icon: Icon(Icons.check),
                 onPressed: () => Navigator.pop(context),
               ),
             )

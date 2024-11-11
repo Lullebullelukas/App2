@@ -1,26 +1,41 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:fsek_mobile/screens/moose_game/game_object.dart';
 import 'package:fsek_mobile/screens/moose_game/sprite.dart';
 import 'package:vector_math/vector_math.dart';
+import 'package:fsek_mobile/services/service_locator.dart';
+import 'package:fsek_mobile/services/theme.service.dart';
 
 enum MooseState { running, jumping, ducking, falling }
 
 class Moose extends GameObject {
-  Sprite mooseRun1 =
-      Sprite("assets/img/moose_game/hilbert_pixel_run_1.png", 24, 24);
-  Sprite mooseRun2 =
-      Sprite("assets/img/moose_game/hilbert_pixel_run_2.png", 24, 24);
-  Sprite mooseRun3 =
-      Sprite("assets/img/moose_game/hilbert_pixel_run_3.png", 24, 24);
-  Sprite mooseRun4 =
-      Sprite("assets/img/moose_game/hilbert_pixel_run_4.png", 24, 24);
-  Sprite mooseJump =
-      Sprite("assets/img/moose_game/hilbert_pixel_jump.png", 24, 24);
-  Sprite mooseFall =
-      Sprite("assets/img/moose_game/hilbert_pixel_fall.png", 24, 24);
-  Sprite mooseDuck =
-      Sprite("assets/img/moose_game/hilbert_pixel_duck.png", 24, 24);
+  // Big lazy conditional, sorry.
+  Sprite mooseRun1 = Sprite(
+    locator<ThemeService>().theme.brightness == Brightness.light ?
+      "assets/img/moose_game/hilbert_pixel_run_1.png" :
+      "assets/img/moose_game/hilbert_pixel_run_1_d.png", 24, 24);
+  Sprite mooseRun2 = Sprite(
+    locator<ThemeService>().theme.brightness == Brightness.light ?
+      "assets/img/moose_game/hilbert_pixel_run_2.png" :
+      "assets/img/moose_game/hilbert_pixel_run_2_d.png", 24, 24);
+  Sprite mooseRun3 = Sprite(
+    locator<ThemeService>().theme.brightness == Brightness.light ?
+      "assets/img/moose_game/hilbert_pixel_run_3.png" :
+      "assets/img/moose_game/hilbert_pixel_run_3_d.png", 24, 24);
+  Sprite mooseRun4 = Sprite(
+    locator<ThemeService>().theme.brightness == Brightness.light ?
+      "assets/img/moose_game/hilbert_pixel_run_4.png" :
+      "assets/img/moose_game/hilbert_pixel_run_4_d.png", 24, 24);
+  Sprite mooseJump = Sprite(
+    locator<ThemeService>().theme.brightness == Brightness.light ?
+      "assets/img/moose_game/hilbert_pixel_jump.png" :
+      "assets/img/moose_game/hilbert_pixel_jump_d.png", 24, 24);
+  Sprite mooseFall = Sprite(
+    locator<ThemeService>().theme.brightness == Brightness.light ?
+      "assets/img/moose_game/hilbert_pixel_fall.png" :
+      "assets/img/moose_game/hilbert_pixel_fall_d.png", 24, 24);
+  
 
   double yVelocity = 0;
   final double jumpForce = 20;

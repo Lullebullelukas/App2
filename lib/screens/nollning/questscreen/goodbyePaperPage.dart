@@ -13,7 +13,7 @@ class GoodbyePaperPage extends StatelessWidget {
           //Color.fromARGB(255, 125, 80, 38),// Transparent background
           elevation: 0, // Remove shadow
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black), // Back arrow icon
+            icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.onPrimary), // Back arrow icon
             onPressed: () {
               Navigator.pop(context); // Go back to the previous screen
             },

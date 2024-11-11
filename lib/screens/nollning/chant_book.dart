@@ -46,9 +46,7 @@ class _ChantBookPageState extends State<ChantBookPage> {
             appBar: AppBar(title: Text(t.introductionGuildChants)),
             body: Center(
                 child: CircularProgressIndicator(
-                    color: (isAprilFools
-                        ? Color(0xFFF17F9F)
-                        : Colors.orange[600]))))
+                    color: Theme.of(context).colorScheme.primary)))
         : Scaffold(
             appBar: AppBar(title: Text(t.introductionGuildChants)),
             body: Column(
@@ -69,19 +67,19 @@ class _ChantBookPageState extends State<ChantBookPage> {
                             ? IconButton(
                                 icon: Icon(
                                   Icons.arrow_back,
-                                  color: Colors.grey[800],
+                                  color: Theme.of(context).colorScheme.onSurface,
                                 ),
                                 onPressed: () =>
                                     FocusScope.of(context).unfocus())
                             : Icon(
                                 Icons.search,
-                                color: Colors.grey[800],
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
                         hintText: t.introductionSearch,
                         suffixIcon: _controller.text.length > 0
                             ? IconButton(
                                 icon: Icon(Icons.clear),
-                                color: Colors.grey[800],
+                                color: Theme.of(context).colorScheme.onSurface,
                                 onPressed: () => setState(() {
                                       _controller.clear();
                                       FocusScope.of(context).unfocus();
@@ -132,7 +130,7 @@ class _ChantBookPageState extends State<ChantBookPage> {
     if (song.author != chantAuthor) {
       chantAuthor = song.author!;
       index.add(Container(
-        decoration: BoxDecoration(color: Colors.grey[300]),
+        decoration: BoxDecoration(color: Theme.of(context).colorScheme.surfaceVariant),
         child: ListTile(
           title: Text(
             chantAuthor,
@@ -147,7 +145,7 @@ class _ChantBookPageState extends State<ChantBookPage> {
             Container(
                 decoration: BoxDecoration(
                     border: Border(
-                  bottom: BorderSide(color: Colors.grey[400]!),
+                  bottom: BorderSide(color: Theme.of(context).colorScheme.onSurfaceVariant),
                 )),
                 child: InkWell(
                   onTap: () => openSong(song.id!),

@@ -42,8 +42,8 @@ class _ErrorPageState extends State<ErrorPage> {
                 ),
                 TextButton(
                   child:
-                      Text("Try again", style: TextStyle(color: Colors.white)),
-                  style: TextButton.styleFrom(foregroundColor: Colors.purple),
+                      Text("Try again", style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
+                  style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.primary),
                   onPressed: () {
                     locator<NavigationService>().pop();
                     widget.authenticationBloc!.add(AppStarted());

@@ -19,7 +19,7 @@ class SongPage extends StatelessWidget {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
             width: double.infinity,
-            decoration: BoxDecoration(color: Colors.grey[200]),
+            decoration: BoxDecoration(color: Theme.of(context).colorScheme.surfaceVariant),
             padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -27,11 +27,7 @@ class SongPage extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(0, 2, 0, 16),
                 child: Text(
                   song.title!,
-                  style: TextStyle(
-                      color: (isAprilFools
-                          ? Color(0xFFF17F9F)
-                          : Colors.orange[600]),
-                      fontSize: 24),
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ),
               song.melody != null && song.melody != ""
@@ -42,12 +38,10 @@ class SongPage extends StatelessWidget {
                           TextSpan(
                               text: "${t.songbookMelody}: ",
                               style: TextStyle(
-                                  color: (isAprilFools
-                                      ? Color(0xFFF17F9F)
-                                      : Colors.orange[600]))),
+                                  color: Theme.of(context).primaryColor)),
                           TextSpan(
                               text: song.melody!,
-                              style: TextStyle(color: Colors.black))
+                              style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant))
                         ]),
                       ),
                     )
@@ -60,12 +54,10 @@ class SongPage extends StatelessWidget {
                           TextSpan(
                               text: "${t.songbookAuthor}: ",
                               style: TextStyle(
-                                  color: (isAprilFools
-                                      ? Color(0xFFF17F9F)
-                                      : Colors.orange[600]))),
+                                  color: Theme.of(context).primaryColor)),
                           TextSpan(
                               text: song.author!,
-                              style: TextStyle(color: Colors.black))
+                              style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant))
                         ]),
                       ),
                     )

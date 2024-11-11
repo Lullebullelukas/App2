@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fsek_mobile/content_wrapper.dart';
 import 'package:fsek_mobile/services/abstract.service.dart';
 import 'package:fsek_mobile/services/theme.service.dart';
+import 'package:fsek_mobile/themes.dart';
 import 'package:fsek_mobile/util/PushNotificationsManager.dart';
 import 'package:fsek_mobile/util/app_exception.dart';
 import 'package:fsek_mobile/util/storage_wrapper.dart';
@@ -29,6 +30,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FsekMobileApp extends StatefulWidget {
+  final String initialThemeMode;
+
+  // We pull the cached theme from storage in main.dart since that is async
+  FsekMobileApp({required this.initialThemeMode});
+
   @override
   _FsekMobileAppState createState() => _FsekMobileAppState();
   static _FsekMobileAppState? of(BuildContext context) =>
@@ -43,6 +49,7 @@ class _FsekMobileAppState extends State<FsekMobileApp> {
   Locale? _locale;
   String? localeName;
   int backgroundIndex = 1;
+  String? _themeMode = "themeF";
 
   User? _user;
 
@@ -62,6 +69,7 @@ class _FsekMobileAppState extends State<FsekMobileApp> {
 
   @override
   void initState() {
+    _themeMode = widget.initialThemeMode;
     _locale = Locale('sv', '');
     _userService = locator<UserService>();
     //checkApiVersion();
@@ -109,73 +117,88 @@ class _FsekMobileAppState extends State<FsekMobileApp> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    return BlocProvider<AuthenticationBloc>(
-        create: (context) => _authenticationBloc!,
-        child: MaterialApp(
-          localizationsDelegates: [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            AppLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: [
-            Locale('en', ''),
-            Locale('sv', ''),
-          ],
-          locale: _locale,
-          navigatorKey: locator<NavigationService>().navigatorKey,
-          theme: locator<ThemeService>().theme,
-          home: Stack(children: [
-            AppBackground(
-                backgroundColors: locator<ThemeService>().backgroundColors),
-            BlocConsumer<AuthenticationBloc, AuthenticationState>(
-              bloc: _authenticationBloc,
-              builder: (BuildContext context, AuthenticationState state) {
-                return AnimatedSwitcher(
-                  duration: Duration(milliseconds: 250),
-                  child: _buildPage(context, state,
-                      locator<NavigationService>().navbarDestinations),
-                );
-              },
-              listener: (context, state) {
-                if (state is AuthenticationDisconnected) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ErrorPage(
-                              authenticationBloc: _authenticationBloc,
-                              text:
-                                  "We could not connect to Fsektionen.se. Please check your connection or try again later.")));
-                }
-                if (state is AuthenticationError) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ErrorPage(
-                              authenticationBloc: _authenticationBloc,
-                              text: state.error)));
-                }
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthenticationBloc>(
+          create: (context) => _authenticationBloc!,
+        ),
+        BlocProvider<ThemeCubit>(
+          create: (context) => ThemeCubit()..setTheme(locator<ThemeService>().getThemeData(_themeMode)),
+        ),
+      ],
+      child: BlocBuilder<ThemeCubit, ThemeData>(
+        builder: (context, theme) {
+          locator<ThemeService>().changeLogInIcon();
+          
+          return MaterialApp(
+            theme: theme,
+            localizationsDelegates: [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              AppLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: [
+              Locale('en', ''),
+              Locale('sv', ''),
+            ],
+            locale: _locale,
+            navigatorKey: locator<NavigationService>().navigatorKey,
+            home: Stack(children: [
+              AppBackground(
+                  backgroundColors: locator<ThemeService>().backgroundColors),
+              BlocConsumer<AuthenticationBloc, AuthenticationState>(
+                bloc: _authenticationBloc,
+                builder: (BuildContext context, AuthenticationState state) {
+                  return AnimatedSwitcher(
+                    duration: Duration(milliseconds: 250),
+                    child: _buildPage(context, state,
+                        locator<NavigationService>().navbarDestinations),
+                  );
+                },
+                listener: (context, state) {
+                  if (state is AuthenticationDisconnected) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ErrorPage(
+                                authenticationBloc: _authenticationBloc,
+                                text:
+                                    "We could not connect to Fsektionen.se. Please check your connection or try again later.")));
+                  }
+                  if (state is AuthenticationError) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ErrorPage(
+                                authenticationBloc: _authenticationBloc,
+                                text: state.error)));
+                  }
 
-                // Background-animation stuff
-                if (state is! AuthenticationUserFetched &&
-                    state is! AuthenticationAuthenticated) {
-                  setState(() {
-                    backgroundIndex = 0;
-                  });
-                } else {
-                  setState(() {
-                    backgroundIndex = 1;
-                  });
-                }
-              },
-            )
-          ]),
+                  // Background-animation stuff
+                  if (state is! AuthenticationUserFetched &&
+                      state is! AuthenticationAuthenticated) {
+                    setState(() {
+                      backgroundIndex = 0;
+                    });
+                  } else {
+                    setState(() {
+                      backgroundIndex = 1;
+                    });
+                  }
+                },
+              )
+            ]),
+        
           debugShowCheckedModeBanner: false,
           initialRoute: '/',
           routes: {
             // put named routes in main.dart please (add hot restart app if running)
           }..addAll(locator<NavigationService>().routes),
-        ));
+        );
+        }
+      )
+    );
   }
 
   Widget? _buildPage(BuildContext context, AuthenticationState state,

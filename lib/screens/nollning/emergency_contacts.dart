@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fsek_mobile/services/service_locator.dart';
+import 'package:fsek_mobile/services/theme.service.dart';
 import 'package:linkable/linkable.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -115,9 +117,9 @@ class _HeaderText extends StatelessWidget {
   );
   final TextStyle headerStyle = TextStyle(
     fontSize: 25.0,
-    color: Colors.black,
+    color: locator<ThemeService>().theme.textTheme.titleLarge!.color,
   );
-  final Color? color = Colors.grey[200];
+  final Color? color = locator<ThemeService>().theme.colorScheme.surfaceVariant;
 
   Future<void> _launchPhoneNumber(String phoneNumber) async {
     // phoneNumber can safely contain "-", "+" and " "
@@ -159,7 +161,7 @@ class _BodyText extends StatelessWidget {
   final String text;
   final TextStyle bodyStyle = TextStyle(
     fontSize: 15.0,
-    color: Colors.black,
+    color: Colors.black, // Unused, see below
   );
 
   _BodyText(this.text);
@@ -169,8 +171,15 @@ class _BodyText extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(10),
       child: Container(
-          alignment: Alignment.centerLeft,
-          child: Linkable(text: text, style: bodyStyle)),
+        alignment: Alignment.centerLeft,
+        child: Linkable(
+          text: text,
+          style: bodyStyle,
+          // linkColor: Colors.blue, // No need to change for now 
+          textColor: Theme.of(context).textTheme.bodyMedium!.color, // Actual used color
+        ),
+      ),
     );
   }
 }
+

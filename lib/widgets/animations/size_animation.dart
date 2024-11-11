@@ -59,7 +59,7 @@ class SizeAnimation extends StatelessWidget {
                 title: Text("${curveList[index]}"),
                 leading: CircleAvatar(
                   child: Text("${index + 1}"),
-                  backgroundColor: Colors.white,
+                  backgroundColor: Theme.of(context).colorScheme.background,
                 ),
                 onTap: () {
                   print(curveList.length);

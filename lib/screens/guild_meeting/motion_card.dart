@@ -16,12 +16,6 @@ class MotionCard extends StatefulWidget {
 }
 
 class _MotionCardState extends State<MotionCard> {
-  Color button_color =
-      (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[700])!.withOpacity(0.3);
-  Color background_color =
-      (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[700])!.withOpacity(0.2);
-  Color bottom_color = Colors.grey[400]!;
-
   @override
   void initState() {
     super.initState();
@@ -29,6 +23,11 @@ class _MotionCardState extends State<MotionCard> {
 
   @override
   Widget build(BuildContext context) {
+    Color button_color =
+      Theme.of(context).colorScheme.surfaceTint;
+    Color background_color =
+      Theme.of(context).colorScheme.surfaceTint.withOpacity(0.4);
+    Color bottom_color = Theme.of(context).colorScheme.onBackground.withOpacity(0.4);
     var t = AppLocalizations.of(context)!;
     return widget.motion == null
         ? Container()

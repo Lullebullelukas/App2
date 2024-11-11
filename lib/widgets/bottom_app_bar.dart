@@ -21,6 +21,7 @@ class FsekAppBar extends StatefulWidget {
     this.height = 60.0,
     this.iconSize = 24.0,
     this.color,
+    this.backgroundColor,
     this.selectedColor,
     this.notchedShape,
     required this.onTabSelected,
@@ -34,6 +35,7 @@ class FsekAppBar extends StatefulWidget {
   final double iconSize;
   final Color? color;
   final Color? selectedColor;
+  final Color? backgroundColor;
   final NotchedShape? notchedShape;
   final ValueChanged<int?> onTabSelected;
   final int currentIndex;
@@ -130,6 +132,8 @@ class FsekAppBarState extends State<FsekAppBar> {
     // items.insert(items.length >> 1, _buildMiddleTabItem());
 
     return BottomAppBar(
+        // Should work to use Colors.transparent but doesn't work
+        color: widget.backgroundColor,
         shape: widget.notchedShape,
         padding: EdgeInsets.zero,
         child: Stack(

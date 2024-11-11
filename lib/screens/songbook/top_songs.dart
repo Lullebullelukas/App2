@@ -52,7 +52,7 @@ class _TopSongsPageState extends State<TopSongsPage> with TickerProviderStateMix
         ? Scaffold(
             //change text
             appBar: AppBar(title: Text(t.songbookSongbook)),
-            body: Center(child: CircularProgressIndicator(color: (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[600]))))
+            body: Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor)))
         : GestureDetector(
             onTap: () => FocusScope.of(context).unfocus(),
             child: Scaffold(
@@ -80,6 +80,7 @@ class _TopSongsPageState extends State<TopSongsPage> with TickerProviderStateMix
 
   Widget _generateSongTile(SongbookEntry song) {
     Color color;
+    Color numColor;
 
     List<Widget> index = [];
     //deciding colour
@@ -90,14 +91,20 @@ class _TopSongsPageState extends State<TopSongsPage> with TickerProviderStateMix
     else if (initChar == 3)
       color = Color.fromARGB(255, 205, 127, 50);
     else
-      color = Color.fromARGB(255, 243, 240, 241);
+      color = Theme.of(context).colorScheme.surfaceVariant;
+
+    // Same for the number
+    if (initChar <= 3)
+      numColor = Color.fromARGB(255, 0, 0, 0);
+    else
+      numColor = Theme.of(context).colorScheme.onSurfaceVariant;
 
     index.add(Container(
       decoration: BoxDecoration(color: color),
       child: ListTile(
         title: Text(
           initChar.toString(),
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: numColor),
         ),
       ),
     ));
@@ -109,7 +116,7 @@ class _TopSongsPageState extends State<TopSongsPage> with TickerProviderStateMix
             Container(
                 decoration: BoxDecoration(
                     border: Border(
-                  bottom: BorderSide(color: Colors.grey[400]!),
+                  bottom: BorderSide(color: Theme.of(context).colorScheme.surfaceVariant),
                 )),
                 child: InkWell(
                   onTap: () => openSong(song.id!),

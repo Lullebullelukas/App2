@@ -47,10 +47,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
 
           return Card(
               color: notis.visited ?? false
-                  ? Colors.white
-                  : (isAprilFools
-                      ? Color.fromARGB(255, 248, 203, 215)
-                      : Colors.orange[100]),
+                  ? Theme.of(context).colorScheme.surface
+                  : Theme.of(context).colorScheme.surfaceTint,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(

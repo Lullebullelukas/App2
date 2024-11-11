@@ -59,7 +59,7 @@ class _CommitteePageState extends State<CommitteePage> {
     double height = 60;
     double margin = 10;
     if (_selectedPerson == p) {
-      border = Border.all(color: (Colors.orange[600])!, width: borderWidth);
+      border = Border.all(color: (Theme.of(context).colorScheme.primary)!, width: borderWidth);
       width += borderWidth;
       height += borderWidth;
       margin -= borderWidth;

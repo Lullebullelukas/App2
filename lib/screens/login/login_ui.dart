@@ -50,11 +50,12 @@ class _LoginUIState extends State<LoginUI> with SingleTickerProviderStateMixin {
     super.initState();
 
     // workaround for this bug: https://github.com/flutter/flutter/issues/21385
+    // Update: The bug is fixed (since 2021), but removing this still changes stuff
     _emailLabelColor = locator<ThemeService>().theme.inputDecorationTheme.hintStyle!.color;
     _emailFocusNode.addListener(() {
       setState(() {
         _emailLabelColor = _emailFocusNode.hasFocus
-            ? Theme.of(context).inputDecorationTheme.labelStyle!.color
+            ? Theme.of(context).inputDecorationTheme.floatingLabelStyle!.color
             : Theme.of(context).inputDecorationTheme.hintStyle!.color;
       });
     });
@@ -62,7 +63,7 @@ class _LoginUIState extends State<LoginUI> with SingleTickerProviderStateMixin {
     _passFocusNode.addListener(() {
       setState(() {
         _passLabelColor = _passFocusNode.hasFocus
-            ? Theme.of(context).inputDecorationTheme.labelStyle!.color
+            ? Theme.of(context).inputDecorationTheme.floatingLabelStyle!.color
             : Theme.of(context).inputDecorationTheme.hintStyle!.color;
       });
     });
@@ -155,12 +156,21 @@ class _LoginUIState extends State<LoginUI> with SingleTickerProviderStateMixin {
           },
         ));
     final _forgotPasswordButton = TextButton(
-        key: Key("login_forgot_btn"),
-        onPressed: () => onForgottenPassword(),
-        child: Text(
-          "Forgot my password",
-          style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.grey[300]),
-        ));
+      key: Key("login_forgot_btn"),
+      onPressed: () => onForgottenPassword(),
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(
+          Theme.of(context).primaryColorLight,
+        ),
+        foregroundColor: MaterialStateProperty.all<Color>(
+          Theme.of(context).colorScheme.onSecondary
+        ),
+      ),
+      child: Text(
+        "Forgot my password",
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.onSecondary),
+      ),
+    );
 
     final form = Form(
         key: _formKey,
@@ -183,12 +193,17 @@ class _LoginUIState extends State<LoginUI> with SingleTickerProviderStateMixin {
         final _loginButton = ScaleTransition(
             scale: loginBtnAnimation as Animation<double>,
             child: ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.orange[700]),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                ),
                 key: Key("login_btn"),
                 onPressed: state is! LoginLoading ? _onLoginButtonPressed : null,
                 child: Text(
                   "Log in",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSecondary, 
+                    fontSize: 16
+                  ),
                 )));
         final _loadingIcon =
             ScaleTransition(scale: loadingAnimation as Animation<double>, child: CircularProgressIndicator());
@@ -197,7 +212,7 @@ class _LoginUIState extends State<LoginUI> with SingleTickerProviderStateMixin {
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Card(
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.white70, width: 0),
+                  side: BorderSide(color: Colors.transparent, width: 0),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 elevation: 5,
@@ -222,8 +237,10 @@ class _LoginUIState extends State<LoginUI> with SingleTickerProviderStateMixin {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('${state.error}'),
-                backgroundColor: Colors.red,
+                content: Text('${state.error}',
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.onError),
+                ),
+                backgroundColor: Theme.of(context).colorScheme.error,
               ),
             );
           });

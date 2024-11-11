@@ -231,15 +231,15 @@ class _HomePageState extends State<HomePage> {
       },
       child: Text(
         text,
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
       ),
       style: TextButton.styleFrom(
           padding: EdgeInsets.zero,
-          backgroundColor: Colors.white.withOpacity(1.0),
+          backgroundColor: Theme.of(context).colorScheme.surface,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          shadowColor: Colors.black,
+          shadowColor: Theme.of(context).colorScheme.onBackground,
           elevation: 10,
           minimumSize: Size(MediaQuery.of(context).size.width / 2.4, 80)),
     );

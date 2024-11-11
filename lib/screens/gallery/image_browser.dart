@@ -81,10 +81,14 @@ class _ImageBrowserPageState extends State<ImageBrowserPage> {
                         .get(Uri.parse("${Environment.API_URL}${widget.album.images![index].file!.large!["url"]!}"));
                     ImageGallerySaver.saveImage(image.bodyBytes,
                         name: "${widget.album.images![index].filename!}", quality: 100);
-                    ScaffoldMessenger.of(context).showSnackBar(new SnackBar(content: Text(t.galleryImageDownloaded)));
+                    ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
+                      content: Text(t.galleryImageDownloaded, style: Theme.of(context).textTheme.labelLarge,), 
+                      backgroundColor: Theme.of(context).colorScheme.surfaceVariant
+                    ));
                   } on Exception catch (_) {
                     ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
-                      content: Text(t.galleryImageDownloadError),
+                      content: Text(t.galleryImageDownloadError, style: Theme.of(context).textTheme.labelLarge,),
+                      backgroundColor: Theme.of(context).colorScheme.surfaceVariant
                     ));
                   }
                 },

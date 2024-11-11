@@ -27,7 +27,7 @@ class _AdventureMissionsTabState extends State<AdventureMissionsTab> {
       return Scaffold(
         body: Center(
           child: CircularProgressIndicator(
-            color: (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[600]),
+            color: Theme.of(context).colorScheme.primary,
           ),
         ),
       );

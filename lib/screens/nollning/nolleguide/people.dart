@@ -59,7 +59,7 @@ class _PeoplePageState extends State<PeoplePage> {
     double margin = 10;
     if (_selectedPerson == p) {
       border = Border.all(
-          color: (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[600])!,
+          color: Theme.of(context).colorScheme.primary,
           width: borderWidth);
       width += borderWidth;
       height += borderWidth;

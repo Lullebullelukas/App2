@@ -37,9 +37,7 @@ class _CafePageState extends State<CafePage> {
     var t = AppLocalizations.of(context)!;
     return Card(
       color: (shift.user != null)
-          ? (isAprilFools
-              ? Color.fromARGB(255, 240, 184, 200)
-              : Colors.orange[100])
+          ? Theme.of(context).colorScheme.surfaceTint
           : null,
       child: InkWell(
         onTap: () => openCafeShiftPage(shift),
@@ -56,9 +54,7 @@ class _CafePageState extends State<CafePage> {
                       shift.duration ?? "för alltid",
                       style: TextStyle(
                         fontSize: 15,
-                        color: (isAprilFools
-                            ? Color(0xFFF17F9F)
-                            : Colors.orange[600]),
+                        color: (Theme.of(context).colorScheme.primary),
                       ),
                       textAlign: TextAlign.left,
                     ),
@@ -66,6 +62,7 @@ class _CafePageState extends State<CafePage> {
                       shift.user?.name ?? t.cafeShiftShift,
                       style: TextStyle(
                         fontSize: 18,
+                        color: (shift.user != null ? Theme.of(context).colorScheme.onInverseSurface : Theme.of(context).colorScheme.onSurface),
                       ),
                     )
                   ],
@@ -126,6 +123,9 @@ class _CafePageState extends State<CafePage> {
         child: ListView(
           children: [
             TableCalendar(
+              calendarStyle: CalendarStyle(markerDecoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.onBackground,
+                      shape: BoxShape.circle)),
               availableGestures: AvailableGestures.horizontalSwipe,
               locale: locale,
               startingDayOfWeek: StartingDayOfWeek.monday,
@@ -155,13 +155,13 @@ class _CafePageState extends State<CafePage> {
               alignment: Alignment.centerLeft,
               width: double.infinity,
               height: 20,
-              color: (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[600]),
+              color: Theme.of(context).colorScheme.primary,
               child: Text(
                 /* It's too late to write pretty code, take this formatting space*/
                 "  " + DateFormat("MMMMEEEEd", locale).format(_selectedDay),
                 style: TextStyle(
                   fontSize: 12,
-                  color: Colors.white,
+                  color: Theme.of(context).colorScheme.onSecondary,
                 ),
               ),
             ),

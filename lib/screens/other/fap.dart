@@ -58,8 +58,7 @@ class _FapPageState extends State<FapPage> {
             Text(
               t.fapFap,
               style: Theme.of(context).textTheme.headlineMedium?.apply(
-                  color:
-                      (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[600])),
+                  color:Theme.of(context).colorScheme.primary),
             ),
             SizedBox(
               height: 10,
@@ -75,8 +74,7 @@ class _FapPageState extends State<FapPage> {
             Text(
               t.fapConstructed,
               style: Theme.of(context).textTheme.bodyLarge?.apply(
-                  color:
-                      (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[700])),
+                  color:Theme.of(context).primaryColor),
             ),
             ...(knackare.map((e) => Text(e)).toList()),
             SizedBox(
@@ -84,13 +82,15 @@ class _FapPageState extends State<FapPage> {
             ),
             RichText(
               text: TextSpan(
-                style: TextStyle(color: Colors.black),
+                style: Theme.of(context).textTheme.bodyMedium,
                 children: <TextSpan>[
                   TextSpan(text: t.fapInspired),
                   TextSpan(
                     text: t.fapDev,
-                    style: TextStyle(color: Colors.grey[700]),
                     recognizer: fredmansTap,
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyMedium!.color!.withAlpha(200)
+                    ),
                   ),
                 ],
               ),

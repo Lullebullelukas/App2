@@ -15,6 +15,7 @@ import 'package:fsek_mobile/services/theme.service.dart';
 import 'package:fsek_mobile/services/user.service.dart';
 import 'package:fsek_mobile/util/storage_wrapper.dart';
 import 'package:fsek_mobile/services/gallery.service.dart';
+import 'package:fsek_mobile/themes.dart';
 
 import 'album.service.dart';
 import 'contact.service.dart';
@@ -42,4 +43,5 @@ void setupLocator() {
   locator.registerLazySingleton(() => FredmanskyService());
   locator.registerLazySingleton(() => DocumentService());
   locator.registerLazySingleton(() => GameScoreService());
+  locator.registerLazySingleton(() => ThemeCubit());
 }

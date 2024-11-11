@@ -25,13 +25,13 @@ class _AppBackgroundState extends State<AppBackground> {
     return Stack(children: [
       Container(
         height: MediaQuery.of(context).size.height,
-        color: const Color(0xFFF1F1F1),
+        color: Theme.of(context).colorScheme.background,
       ),
       ClipPath(
         clipper: TopWaveClipper(),
         child: Container(
           decoration: BoxDecoration(
-            color: (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[700]),
+            color: Theme.of(context).primaryColor,
           )
           //   gradient: LinearGradient(
           //       colors: widget.backgroundColors, begin: Alignment.centerLeft, end: Alignment.centerRight),

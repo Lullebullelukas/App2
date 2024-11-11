@@ -38,16 +38,21 @@ class _GalleryPageState extends State<GalleryPage> {
             //Make dropdown prettier mayb :
             children: [
               Container(
-                  decoration: BoxDecoration(color: Colors.grey[50]),
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.background),
                   padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                   child: DropdownButton(
+                    iconDisabledColor: Theme.of(context).colorScheme.onBackground,
+                    iconEnabledColor: Theme.of(context).colorScheme.onBackground,
+                    dropdownColor: Theme.of(context).colorScheme.background,
                     elevation: 2,
                     isExpanded: true,
                     value: selectedYear,
                     items: galleries?[0]
                         .years!
                         .map((int year) => DropdownMenuItem(
-                            child: Text(year.toString()), value: year))
+                            child: Text(year.toString(), style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            )), value: year))
                         .toList(),
                     onChanged: (int? newYear) {
                       setState(() {
@@ -106,7 +111,7 @@ class _GalleryPageState extends State<GalleryPage> {
                 children: [
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     Icon(Icons.date_range,
-                        color: Theme.of(context).primaryColor),
+                        color: Theme.of(context).colorScheme.primary),
                     SizedBox(
                       width: 2,
                     ),
@@ -123,7 +128,7 @@ class _GalleryPageState extends State<GalleryPage> {
                   ),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     Icon(Icons.location_pin,
-                        color: Theme.of(context).primaryColor),
+                        color: Theme.of(context).colorScheme.primary),
                     SizedBox(
                       width: 2,
                     ),
@@ -142,7 +147,7 @@ class _GalleryPageState extends State<GalleryPage> {
                     height: 3,
                   ),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Icon(Icons.image, color: Theme.of(context).primaryColor),
+                    Icon(Icons.image, color: Theme.of(context).colorScheme.primary),
                     SizedBox(
                       width: 2,
                     ),

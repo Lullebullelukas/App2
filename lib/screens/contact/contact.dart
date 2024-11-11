@@ -38,8 +38,7 @@ class _ContactPageState extends State<ContactPage> {
         shape: BoxShape.circle,
         border: Border.all(
             width: 2,
-            color: Colors.grey[
-                400]!)); //default box decoration, could add image for flair
+            color: Theme.of(context).colorScheme.onPrimary)); //default box decoration, could add image for flair
 
     if (contacts!.isEmpty) {
       return Scaffold(
@@ -48,9 +47,7 @@ class _ContactPageState extends State<ContactPage> {
                   style: Theme.of(context).textTheme.headlineSmall)),
           body: Center(
               child: CircularProgressIndicator(
-                  color: (isAprilFools
-                      ? Color(0xFFF17F9F)
-                      : Colors.orange[600]))));
+                  color: Theme.of(context).colorScheme.primary)));
     }
 
     //We only want to attempt to fetch a network image if it it's url is not null. Hence map accessing weirdness with nullcheck
@@ -61,7 +58,7 @@ class _ContactPageState extends State<ContactPage> {
                 "${Environment.API_URL}${currentContact!.avatar!["avatar"]!["thumb"]["url"].toString()}"),
           ),
           shape: BoxShape.circle,
-          border: Border.all(width: 2, color: Colors.grey[400]!));
+          border: Border.all(width: 2, color: Theme.of(context).colorScheme.onPrimary));
     }
     return Scaffold(
         appBar: AppBar(
@@ -77,9 +74,7 @@ class _ContactPageState extends State<ContactPage> {
                 height: 200,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: (isAprilFools
-                          ? Color(0xFFF17F9F)
-                          : Colors.orange[600])),
+                      color: Theme.of(context).primaryColorLight),
                   child: Stack(children: <Widget>[
                     Center(
                       child: SizedBox(
@@ -100,7 +95,7 @@ class _ContactPageState extends State<ContactPage> {
               ),
               Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(color: Colors.grey[200]),
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.surfaceVariant),
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(8, 24, 8, 8),
                     child: Text(t.contactPerson,
@@ -124,7 +119,7 @@ class _ContactPageState extends State<ContactPage> {
               ),
               Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(color: Colors.grey[200]),
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.surfaceVariant),
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(8, 24, 8, 4),
                     child: Text(t.contactDescription,
@@ -138,7 +133,7 @@ class _ContactPageState extends State<ContactPage> {
                   ),
               Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(color: Colors.grey[200]),
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.surfaceVariant),
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(8, 24, 8, 4),
                     child: Text(t.contactInfo,
@@ -175,7 +170,7 @@ class _ContactPageState extends State<ContactPage> {
               ),
               Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(color: Colors.grey[200]),
+                  decoration: BoxDecoration(color: Theme.of(context).colorScheme.surfaceVariant),
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(8, 24, 8, 4),
                     child: Text(t.contactMessage,
@@ -198,28 +193,28 @@ class _ContactPageState extends State<ContactPage> {
               Container(
                 width: double.infinity,
                 height: 30,
-                decoration: BoxDecoration(color: Colors.grey[200]),
+                decoration: BoxDecoration(color: Theme.of(context).colorScheme.surfaceVariant),
               ),
               Container(
                   width: double.infinity,
                   height: 50,
                   child: Ink(
                     decoration: BoxDecoration(
-                        color: (isAprilFools
-                            ? Color(0xFFF17F9F)
-                            : Colors.orange[600])),
+                        color: Theme.of(context).primaryColorLight),
                     child: InkWell(
                         child: Center(
                             child: Text(
                           t.contactSend,
-                          style: Theme.of(context).textTheme.labelLarge,
+                          style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                              color: Theme.of(context).colorScheme.onPrimary
+                          ),
                         )),
                         onTap: () => _sendMessage(localMessage)),
                   )),
               Container(
                 width: double.infinity,
                 height: 30,
-                decoration: BoxDecoration(color: Colors.grey[200]),
+                decoration: BoxDecoration(color: Theme.of(context).colorScheme.surfaceVariant),
               ),
             ],
           ),
@@ -290,7 +285,7 @@ class _ContactPageState extends State<ContactPage> {
             Align(
               alignment: Alignment.bottomRight,
               child: IconButton(
-                  icon: Icon(Icons.check, color: Colors.grey[800]),
+                  icon: Icon(Icons.check, color: Theme.of(context).colorScheme.onBackground),
                   onPressed: () => Navigator.pop(context)),
             )
           ],

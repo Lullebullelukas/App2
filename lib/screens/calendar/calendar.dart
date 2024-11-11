@@ -71,7 +71,7 @@ class _CalendarState extends State<Calendar> {
                         // Double ternary just works :)
                         color: (event.is_introduction == true
                             ? Color(0xFF630B0B)
-                            : (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[600])),
+                            : Theme.of(context).colorScheme.primary),
                       ),
                       textAlign: TextAlign.left,
                     ),
@@ -153,7 +153,7 @@ class _CalendarState extends State<Calendar> {
     }
     return Container(
       height: MediaQuery.of(context).size.height,
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.background,
       child: RefreshIndicator(
         onRefresh: () => _onRefresh(),
         child: ListView(
@@ -161,6 +161,9 @@ class _CalendarState extends State<Calendar> {
             Column(
               children: [
                 TableCalendar(
+                  calendarStyle: CalendarStyle(markerDecoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.onBackground,
+                      shape: BoxShape.circle)),
                   availableGestures: AvailableGestures.horizontalSwipe,
                   locale: locale,
                   startingDayOfWeek: StartingDayOfWeek.monday,
@@ -191,13 +194,13 @@ class _CalendarState extends State<Calendar> {
                   alignment: Alignment.centerLeft,
                   width: double.infinity,
                   height: 20,
-                  color: (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[600]),
+                  color: Theme.of(context).colorScheme.primary,
                   child: Text(
                     /* It's too late to write pretty code, take this formatting space*/
                     "  " + DateFormat("MMMMEEEEd", locale).format(_selectedDay),
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
                 ),

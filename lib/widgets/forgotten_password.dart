@@ -40,7 +40,7 @@ class ForgottenPassword {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   //fontWeight: FontWeight.w600,
-                                  color: Colors.grey,
+                                  //color: Colors.black,
                                 ),
                               )),
                         ),
@@ -72,12 +72,12 @@ class ForgottenPassword {
                               ElevatedButton(
                                   key: Key('submit_btn'),
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.purple),
+                                      backgroundColor: Theme.of(context).colorScheme.primary),
                                   child: Text(
                                     "SUBMIT",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
-                                      color: Colors.white,
+                                      color: Theme.of(context).colorScheme.onSecondary,
                                     ),
                                   ),
                                   onPressed: () {

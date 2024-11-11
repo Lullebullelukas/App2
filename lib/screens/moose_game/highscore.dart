@@ -114,18 +114,18 @@ class _HighscorePageState extends State<HighscorePage>
                           ? IconButton(
                               icon: Icon(
                                 Icons.arrow_back,
-                                color: Colors.grey[800],
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
                               onPressed: () => FocusScope.of(context).unfocus())
                           : Icon(
                               Icons.search,
-                              color: Colors.grey[800],
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                       hintText: t.songbookSearch,
                       suffixIcon: _controller.text.length > 0
                           ? IconButton(
                               icon: Icon(Icons.clear),
-                              color: Colors.grey[800],
+                              color: Theme.of(context).colorScheme.onSurface,
                               onPressed: () => setState(() {
                                     _controller.clear();
                                     FocusScope.of(context).unfocus();

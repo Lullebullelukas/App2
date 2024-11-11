@@ -109,7 +109,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                                 ),
                                 Row(
                                   children: [
-                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                     ElevatedButton(
                                         onPressed: () {
                                           _launchPhoneNumber(t.careerCounsellorOneNumber);
@@ -162,7 +162,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                                 ),
                                 Row(
                                   children: [
-                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                     ElevatedButton(
                                         onPressed: () {
                                           _launchPhoneNumber(t.careerCounsellorTwoNumber);
@@ -203,7 +203,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                                 ),
                                 Row(
                                   children: [
-                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                     ElevatedButton(
                                         onPressed: () {
                                           _launchPhoneNumber(t.careerCounsellorThreeNumber);
@@ -277,7 +277,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                                 ),
                                 Row(
                                   children: [
-                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                     ElevatedButton(
                                         onPressed: () {
                                           _launchPhoneNumber(t.counsellorOneNumber);
@@ -320,7 +320,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                                 SizedBox(height: 10),
                                 Row(
                                   children: [
-                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                     ElevatedButton(
                                         onPressed: () {
                                           _launchPhoneNumber(t.studentHealthCenterNumber);
@@ -503,7 +503,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                               SizedBox(height: 20),
                               Row(
                                 children: [
-                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                   ElevatedButton(
                                       onPressed: () {
                                         (_launchPhoneNumber(t.supportThereIsHelpNumber));
@@ -549,7 +549,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                               SizedBox(height: 10),
                               Row(
                                 children: [
-                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                   ElevatedButton(
                                       onPressed: () {
                                         (_launchPhoneNumber(t.umoNumber));
@@ -579,7 +579,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                               SizedBox(height: 10),
                               Row(
                                 children: [
-                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                   ElevatedButton(
                                       onPressed: () {
                                         (_launchPhoneNumber(t.psychotherapyClinicNumber));
@@ -644,7 +644,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                                 SizedBox(height: 10),
                                 Row(
                                   children: [
-                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                     ElevatedButton(
                                         onPressed: () {
                                           (_launchPhoneNumber(t.youngAdultsInLundNumber));
@@ -674,7 +674,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                                 SizedBox(height: 10),
                                 Row(
                                   children: [
-                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                    Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                     ElevatedButton(
                                         onPressed: () {
                                           (_launchPhoneNumber(t.studentPriestsNumber));
@@ -753,7 +753,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                               SizedBox(height: 10),
                               Row(
                                 children: [
-                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                   ElevatedButton(
                                       onPressed: () {
                                         (_launchPhoneNumber(t.kvinnojourenLundNumber));
@@ -811,7 +811,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                               SizedBox(height: 10),
                               Row(
                                 children: [
-                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                   ElevatedButton(
                                       onPressed: () {
                                         (_launchPhoneNumber(t.mansjourenNumber));
@@ -855,7 +855,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                               SizedBox(height: 10),
                               Row(
                                 children: [
-                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                   ElevatedButton(
                                       onPressed: () {
                                         (_launchPhoneNumber(t.adultPsychEmergencyClinicNumber));
@@ -885,7 +885,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                               SizedBox(height: 10),
                               Row(
                                 children: [
-                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                   ElevatedButton(
                                       onPressed: () {
                                         (_launchPhoneNumber(t.mindSuicidehotliteNumber));
@@ -915,7 +915,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                               SizedBox(height: 10),
                               Row(
                                 children: [
-                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                   ElevatedButton(
                                       onPressed: () {
                                         (_launchPhoneNumber(t.onCallPersonNumber));
@@ -964,7 +964,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                               SizedBox(height: 10),
                               Row(
                                 children: [
-                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                   ElevatedButton(
                                       onPressed: () {
                                         (_launchPhoneNumber(t.mariaClinicNumber));
@@ -1008,7 +1008,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                               SizedBox(height: 10),
                               Row(
                                 children: [
-                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                  Text("Tel: ", style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                   ElevatedButton(
                                       onPressed: () {
                                         (_launchPhoneNumber(t.triangleAddictionClinicNumber));
@@ -1052,7 +1052,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                               SizedBox(height: 10),
                               Row(
                                 children: [
-                                  Text(t.contact, style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                  Text(t.contact, style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                   ElevatedButton(
                                       onPressed: () {
                                         (_launchPhoneNumber('114 14'));
@@ -1067,7 +1067,7 @@ class _StodFunktionerScreenState extends State<StodFunktionerScreenPage> {
                                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                       ),
                                       child: Text(" 114 14 ", style: TextStyle(fontWeight: FontWeight.w500, color: Color(0xFF5269D1), fontSize: screenWidth / 29))),
-                                  Text(t.forUrgentHelp, style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29, color: Colors.black)),
+                                  Text(t.forUrgentHelp, style: TextStyle(fontWeight: FontWeight.w500, fontSize: screenWidth / 29)),
                                 ],
                               ),
                             ]))

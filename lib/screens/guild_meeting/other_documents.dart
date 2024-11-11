@@ -31,9 +31,7 @@ class _OtherDocumentsPageState extends State<OtherDocumentsPage> {
         body: otherList == null
             ? Center(
                 child: CircularProgressIndicator(
-                    color: (isAprilFools
-                        ? Color(0xFFF17F9F)
-                        : Colors.orange[600])))
+                    color: Theme.of(context).colorScheme.primary))
             : !listEquals([],
                     otherList) //listEquals är mycket viktigt, annars jämför den pointers
                 ? Column(//Det finns övriga dokument
@@ -58,7 +56,7 @@ class _OtherDocumentsPageState extends State<OtherDocumentsPage> {
     return Container(
         decoration: BoxDecoration(
             border: Border(
-          bottom: BorderSide(color: Colors.grey[400]!),
+          bottom: BorderSide(color: Theme.of(context).colorScheme.onBackground.withOpacity(0.4)),
         )),
         child: InkWell(
           onTap: () => openDocument(document),

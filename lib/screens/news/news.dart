@@ -52,7 +52,10 @@ class _NewsPageState extends State<NewsPage> {
                           subtitle: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(news.user!.name!),
+                                Text(news.user!.name!,
+                                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                                    fontWeight: FontWeight.normal
+                                  )),
                                 SizedBox(height: 6),
                                 Text(
                                   news.created_at.toString().substring(0, 16),
@@ -62,9 +65,7 @@ class _NewsPageState extends State<NewsPage> {
                           isThreeLine: true,
                           trailing: (news.is_pinned ?? false)
                               ? Icon(Icons.push_pin_outlined,
-                                  color: (isAprilFools
-                                      ? Color(0xFFF17F9F)
-                                      : Colors.orange[600]))
+                                  color: Theme.of(context).colorScheme.primary)
                               : SizedBox.shrink())));
             }, noItemsFoundIndicatorBuilder: (context) {
               return Container(

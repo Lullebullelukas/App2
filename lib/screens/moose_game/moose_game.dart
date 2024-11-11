@@ -13,6 +13,7 @@ import 'package:fsek_mobile/services/user.service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:fsek_mobile/services/theme.service.dart';
 
 import 'package:vector_math/vector_math.dart';
 
@@ -206,6 +207,7 @@ class _MooseGamePageState extends State<MooseGamePage>
   }
 
   void gameOver() {
+    print(locator<ThemeService>().theme.brightness.toString());
     gameAnimController.stop();
     soundtrackPlayer.stop();
     soundtrackPlayer.setReleaseMode(ReleaseMode.stop);
@@ -294,7 +296,7 @@ class _MooseGamePageState extends State<MooseGamePage>
               style: new TextStyle(
                   fontFamily: "NF-Pixels",
                   fontSize: 50,
-                  color: Color.fromARGB(sandwichBonusPopupFadeout, 0, 0, 0)),
+                  color: Theme.of(context).colorScheme.onBackground.withAlpha(sandwichBonusPopupFadeout)),
             ))));
 
     // Highscore counter
@@ -341,20 +343,20 @@ class _MooseGamePageState extends State<MooseGamePage>
       appBar: AppBar(
         title: Text("Moose Game"),
         actions: [
-          // Add actions here
-          IconButton(
-            icon: Icon(Icons.emoji_events,
-                color: Color.fromARGB(255, 40, 40, 40)), // Trophy icon
-            onPressed: () {
-              gameOver();
-              Future.delayed(Duration(milliseconds: 500));
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HighscorePage()),
-              );
-            },
-          ),
-        ],
+                    // Add actions here
+                    IconButton(
+                      icon: Icon(Icons.emoji_events, color: Theme.of(context).colorScheme.onPrimary), // Trophy icon
+                      onPressed: () {
+                        gameOver();
+                        Future.delayed(Duration(milliseconds: 500));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HighscorePage()),
+                        );
+                      },
+                    ),
+                  ],
       ),
       body: GestureDetector(
         behavior: HitTestBehavior.translucent,

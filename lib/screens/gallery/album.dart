@@ -34,7 +34,7 @@ class AlbumPage extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              decoration: BoxDecoration(color: Colors.grey[50]),
+              decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface),
               child: ExpansionTile(
                 expandedCrossAxisAlignment: CrossAxisAlignment.start,
                 childrenPadding: EdgeInsets.fromLTRB(8, 0, 8, 8),
@@ -60,9 +60,7 @@ class AlbumPage extends StatelessWidget {
                       text: TextSpan(
                           text: t.albumPhotographers,
                           style: Theme.of(context).textTheme.bodyMedium?.apply(
-                              color: (isAprilFools
-                                  ? Color(0xFFCF6D89)
-                                  : Colors.orange[800])),
+                              color: Theme.of(context).primaryColor),
                           children: [
                         TextSpan(
                             text: album.photographers?.join(", ") ??

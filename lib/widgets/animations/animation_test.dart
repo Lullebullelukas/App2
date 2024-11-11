@@ -21,7 +21,7 @@ class AnimationPage extends StatelessWidget {
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => routes[index]));
                 },
                 leading: CircleAvatar(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Theme.of(context).colorScheme.background,
                   child: Text("${index + 1}"),
                 ),
                 title: Text(animationTypeList[index].toString()),

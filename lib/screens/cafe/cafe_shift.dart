@@ -108,11 +108,11 @@ class _CafeShiftPageState extends State<CafeShiftPage> {
         onPressed: () => unsign(shift!),
         child: Text(
           t.cafeShiftRemoveSignup,
-          style: TextStyle(fontSize: 32),
+          style: TextStyle(fontSize: 32, color: Theme.of(context).colorScheme.onError),
         ),
         style: ButtonStyle(
           fixedSize: MaterialStateProperty.all(Size(300, 75)),
-          backgroundColor: MaterialStateProperty.all(Colors.redAccent),
+          backgroundColor: MaterialStateProperty.all(Theme.of(context).colorScheme.error),
         ),
       );
     } else {
@@ -125,6 +125,7 @@ class _CafeShiftPageState extends State<CafeShiftPage> {
               onPressed: () => signup(shift!),
               child: Text(t.cafeShiftSignMeUp, style: TextStyle(fontSize: 32)),
               style: ButtonStyle(
+                backgroundColor: Theme.of(context).textButtonTheme.style!.backgroundColor,
                 fixedSize: MaterialStateProperty.all(Size(300, 75)),
               ),
             )
@@ -145,9 +146,7 @@ class _CafeShiftPageState extends State<CafeShiftPage> {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24,
-                decorationColor: (isAprilFools
-                    ? Color.fromARGB(255, 247, 179, 198)
-                    : Colors.orange[600]),
+                decorationColor: Theme.of(context).colorScheme.primary,
                 decorationThickness: 1.3,
               ),
             ),

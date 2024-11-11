@@ -15,12 +15,6 @@ class PropositionCard extends StatefulWidget {
 }
 
 class _PropositionCardState extends State<PropositionCard> {
-  Color buttonColor =
-      (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[700])!.withOpacity(0.3);
-  Color backgroundColor =
-      (isAprilFools ? Color(0xFFF17F9F) : Colors.orange[700])!.withOpacity(0.2);
-  Color bottomColor = Colors.grey[400]!;
-
   @override
   void initState() {
     super.initState();
@@ -28,6 +22,12 @@ class _PropositionCardState extends State<PropositionCard> {
 
   @override
   Widget build(BuildContext context) {
+    Color buttonColor =
+      Theme.of(context).colorScheme.surfaceTint;
+    Color backgroundColor =
+      Theme.of(context).colorScheme.surfaceTint.withOpacity(0.4);
+    Color bottomColor = Theme.of(context).colorScheme.onBackground.withOpacity(0.4);
+
     var t = AppLocalizations.of(context)!;
     return widget.proposition == null
         ? Container()

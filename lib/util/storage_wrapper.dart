@@ -8,6 +8,10 @@ import 'package:shared_preferences/shared_preferences.dart';
  so we can ignore that in the code.
 
 */ 
+
+// TODO: SharedPreferences might be deprecated in the future, see:
+// https://pub.dev/packages/shared_preferences#sharedpreferences-vs-sharedpreferencesasync-vs-sharedpreferenceswithcache
+
 class TokenStorageWrapper {
   static late FlutterSecureStorage secureStorage;
   static SharedPreferences? prefs;
