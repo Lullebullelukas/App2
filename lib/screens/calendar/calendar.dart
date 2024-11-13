@@ -41,22 +41,11 @@ class _CalendarState extends State<Calendar> {
     String locale = Localizations.localeOf(context).toString();
     return Container(
       child: Card(
-        // Hide card for introduction events
-        shadowColor: event.is_introduction == true ? Colors.transparent : null,
-        color: event.is_introduction == true ? Colors.transparent : null,
+        shadowColor: null,
+        color: null,
         child: InkWell(
           onTap: () => openEventPage(event),
           child: Container(
-            // Introduction events have a different background
-            decoration: event.is_introduction == true
-                ? BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/img/nollning-24/schedule/event_card_background.png"),
-                      fit: BoxFit.fill,
-                    ),
-                  )
-                : null,
-
             margin: EdgeInsets.zero,
             child: Container(
               child: Column(
@@ -68,10 +57,7 @@ class _CalendarState extends State<Calendar> {
                       event.title ?? "no title",
                       style: TextStyle(
                         fontSize: 20,
-                        // Double ternary just works :)
-                        color: (event.is_introduction == true
-                            ? Color(0xFF630B0B)
-                            : Theme.of(context).colorScheme.primary),
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                       textAlign: TextAlign.left,
                     ),
@@ -117,6 +103,7 @@ class _CalendarState extends State<Calendar> {
                         "  " + (event.location ?? "intigheten"),
                         style: TextStyle(
                           fontSize: 14,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                         textAlign: TextAlign.left,
                       ),
@@ -124,14 +111,12 @@ class _CalendarState extends State<Calendar> {
                   ),
                 ],
               ),
-              margin: event.is_introduction == true
-                  ? EdgeInsets.fromLTRB(MediaQuery.of(context).size.width / 6, 15, 15, 15)
-                  : EdgeInsets.all(10),
+              margin: EdgeInsets.all(10),
             ),
           ),
         ),
         // Introduction events background needs access to entire card
-        margin: event.is_introduction == true ? EdgeInsets.symmetric(vertical: 4) : EdgeInsets.all(4),
+        margin: EdgeInsets.all(4),
       ),
     );
   }

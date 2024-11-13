@@ -24,7 +24,7 @@ class AboutGuildMeetingPage extends StatelessWidget {
                   SizedBox(height: 8),
                   RichText(
                     text: TextSpan(
-                      style: TextStyle(color: Theme.of(context).textTheme.bodyMedium!.color),
+                      style: Theme.of(context).textTheme.bodyMedium,
                       children: <TextSpan>[
                         TextSpan(text: t.guildMeetingNominateOne, style: TextStyle(height: 1.5)),
                         TextSpan(
@@ -77,7 +77,7 @@ class AboutGuildMeetingPage extends StatelessWidget {
                   SizedBox(height: 8),
                   RichText(
                     text: TextSpan(
-                      style: TextStyle(color: Theme.of(context).textTheme.bodyMedium!.color),
+                      style: Theme.of(context).textTheme.bodyMedium,
                       children: <TextSpan>[
                         TextSpan(
                             text: "${t.guildMeetingAboutTwo}"
@@ -120,7 +120,7 @@ class AboutGuildMeetingPage extends StatelessWidget {
                   SizedBox(height: 8),
                   RichText(
                     text: TextSpan(
-                      style: TextStyle(color: Theme.of(context).textTheme.bodyMedium!.color),
+                      style: Theme.of(context).textTheme.bodyMedium,
                       children: <TextSpan>[
                         TextSpan(text: "${t.guildMeetingElectionInfoTwo}", style: TextStyle(height: 1.5)),
                         TextSpan(
