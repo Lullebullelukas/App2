@@ -31,7 +31,6 @@ class _TopSongsPageState extends State<TopSongsPage> with TickerProviderStateMix
     animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 1400));
     locator<SongbookService>().getTopSongs(num_top_songs).then((value) => setState(() {
           this.songs = value;
-          songs.sort((a, b) => a.title!.compareTo(b.title!)); // handle null?
           TopSongs = List.from(songs);
         }));
 

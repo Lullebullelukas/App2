@@ -35,55 +35,30 @@ class OtherContent extends StatelessWidget {
     settings = [t.otherAccount, t.otherLanguage, t.otherTheme];
     support = [t.otherContact, t.otherAnon];
 
-    // Temporary moose game reveal holdoff until 18:30 6th of September 2024, 
-    // after that date, remove this please
-    if (DateTime.now().isBefore(DateTime(2024, 9, 6, 18, 30))) {
-      routeMap = {
-        "Songbook": SongbookPage(),
-        "Photo Gallery": GalleryPage(),
-        "Hilbert Café": CafePage(),
-        "Moose Game": PlaceholderPage(title: "Moose Game", disc: "Coming to a sittning near you..."),
-        "The F guild": AboutGuildPage(),
-        "The F-app": FapPage(),
-        "Account": SettingsPage(),
-        "Language": LanguageSettingsPage(),
-        "Contact": ContactPage(),
-        "Anonymous contact page": Container(),
-        "Sångbok": SongbookPage(),
-        "Bildgalleri": GalleryPage(),
-        "F-sektionen": AboutGuildPage(),
-        "F-appen": FapPage(),
-        "Konto": SettingsPage(),
-        "Språk": LanguageSettingsPage(),
-        "Kontakt": ContactPage(),
-        "Anonym kontaktsida": Container()
-      };
-    } else {
-      /* I am so sorry for this Teo */
-      routeMap = {
-        "Songbook": SongbookPage(),
-        "Photo Gallery": GalleryPage(),
-        "Hilbert Café": CafePage(),
-        "Moose Game": MooseGamePage(),
-        "The F guild": AboutGuildPage(),
-        "The F-app": FapPage(),
-        "Account": SettingsPage(),
-        "Language": LanguageSettingsPage(),
-        "Theme": ThemeSettingsPage(),
-        "Contact": ContactPage(),
-        "Anonymous contact page": Container(),
-        "Sångbok": SongbookPage(),
-        "Bildgalleri": GalleryPage(),
-        "F-sektionen": AboutGuildPage(),
-        "F-appen": FapPage(),
-        "Konto": SettingsPage(),
-        "Språk": LanguageSettingsPage(),
-        "Tema": ThemeSettingsPage(),
-        "Kontakt": ContactPage(),
-        "Anonym kontaktsida": Container()
-      };
-    }
     
+    /* I am so sorry for this Teo */
+    routeMap = {
+      "Songbook": SongbookPage(),
+      "Photo Gallery": GalleryPage(),
+      "Hilbert Café": CafePage(),
+      "Moose Game": MooseGamePage(),
+      "The F guild": AboutGuildPage(),
+      "The F-app": FapPage(),
+      "Account": SettingsPage(),
+      "Language": LanguageSettingsPage(),
+      "Theme": ThemeSettingsPage(),
+      "Contact": ContactPage(),
+      "Anonymous contact page": Container(),
+      "Sångbok": SongbookPage(),
+      "Bildgalleri": GalleryPage(),
+      "F-sektionen": AboutGuildPage(),
+      "F-appen": FapPage(),
+      "Konto": SettingsPage(),
+      "Språk": LanguageSettingsPage(),
+      "Tema": ThemeSettingsPage(),
+      "Kontakt": ContactPage(),
+      "Anonym kontaktsida": Container()
+    };
 
     return ListView(
         children: _generateListTiles(categories, context) +

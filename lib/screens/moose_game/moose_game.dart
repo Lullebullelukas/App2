@@ -343,20 +343,20 @@ class _MooseGamePageState extends State<MooseGamePage>
       appBar: AppBar(
         title: Text("Moose Game"),
         actions: [
-                    // Add actions here
-                    IconButton(
-                      icon: Icon(Icons.emoji_events, color: Theme.of(context).colorScheme.onPrimary), // Trophy icon
-                      onPressed: () {
-                        gameOver();
-                        Future.delayed(Duration(milliseconds: 500));
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HighscorePage()),
-                        );
-                      },
-                    ),
-                  ],
+          // Add actions here
+          IconButton(
+            icon: Icon(Icons.emoji_events, color: Theme.of(context).colorScheme.onPrimary), // Trophy icon
+            onPressed: () {
+              gameOver();
+              Future.delayed(Duration(milliseconds: 500));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => HighscorePage()),
+              );
+            },
+          ),
+        ],
       ),
       body: GestureDetector(
         behavior: HitTestBehavior.translucent,
