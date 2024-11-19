@@ -13,7 +13,7 @@ description: Mobile application for the F-guild
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 #
 
-version: 1.14.6122+1 #buildnumber incremented automatically in codemagic
+version: 1.15.6122+1 #buildnumber incremented automatically in codemagic
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
