@@ -27,7 +27,7 @@ dependencies:
   #cupertino_icons: ^0.1.2
   provider: ^6.0.0 # For Blocs and more
   http: ^1.1.0 # For Http requests
-  json_annotation: ^4.0.1 # For json serializing
+  json_annotation: ^4.9.0 # For json serializing
   flutter_secure_storage: ^9.0.0 # For storing encryption keys for Boxes
   shared_preferences: ^2.0.6 # For web storage as well as small things, such as app theme
   firebase_messaging: ^14.6.8 # For Push notifications
@@ -113,8 +113,6 @@ flutter:
     - assets/data/guide/
     - assets/data/nollning-24/
     - assets/data/nolleguide_2024/
-
-    - assets/img/nollning-24/schedule/
 
   fonts:
     - family: Brandon Grotesque

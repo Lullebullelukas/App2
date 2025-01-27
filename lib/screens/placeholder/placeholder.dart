@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fsek_mobile/april_fools.dart';
 
 class PlaceholderPage extends StatelessWidget {
   const PlaceholderPage({Key? key, required this.title, required this.disc})

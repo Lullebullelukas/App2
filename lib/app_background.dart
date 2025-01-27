@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'april_fools.dart';
 
 class AppBackground extends StatefulWidget {
   AppBackground({Key? key, required this.backgroundColors}) : super(key: key);

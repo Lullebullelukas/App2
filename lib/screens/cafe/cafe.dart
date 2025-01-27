@@ -1,4 +1,3 @@
-import 'package:fsek_mobile/april_fools.dart';
 import 'package:flutter/material.dart';
 import 'package:fsek_mobile/models/cafe/cafe_shift.dart';
 import 'package:fsek_mobile/screens/cafe/cafe_shift.dart';

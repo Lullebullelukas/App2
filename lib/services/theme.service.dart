@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fsek_mobile/april_fools.dart';
 import 'package:fsek_mobile/themes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fsek_mobile/services/service_locator.dart';

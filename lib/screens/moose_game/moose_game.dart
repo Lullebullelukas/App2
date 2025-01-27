@@ -13,7 +13,6 @@ import 'package:fsek_mobile/services/user.service.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:fsek_mobile/services/theme.service.dart';
 
 import 'package:vector_math/vector_math.dart';
 

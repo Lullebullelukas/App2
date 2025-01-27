@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:fsek_mobile/april_fools.dart';
 import 'package:fsek_mobile/models/notiser/notis.dart';
 import 'package:fsek_mobile/screens/event/event.dart';
 import 'package:fsek_mobile/services/notiser.service.dart';

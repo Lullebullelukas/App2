@@ -2,12 +2,8 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:fsek_mobile/themes.dart';
-import 'package:fsek_mobile/april_fools.dart';
 import 'models/destination.dart';
 import 'models/user/user.dart';
-import 'services/service_locator.dart';
-import 'services/theme.service.dart';
 import 'widgets/bottom_app_bar.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:audioplayers/audioplayers.dart';

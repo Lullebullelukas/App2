@@ -5,7 +5,6 @@ import 'package:fsek_mobile/models/documents/election_document.dart';
 import 'package:fsek_mobile/screens/guild_meeting/proposition_card.dart';
 import 'package:fsek_mobile/services/service_locator.dart';
 import 'package:fsek_mobile/services/document.service.dart';
-import 'package:fsek_mobile/april_fools.dart';
 
 class PropositionsPage extends StatefulWidget {
   @override
